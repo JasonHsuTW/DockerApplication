@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  api_server:
+    # 告訴 Docker Compose 根據當前目錄的 Dockerfile 來建立映像檔
+    build: .
+    # 給予容器一個明確的名稱，方便後續管理
+    container_name: local_fastapi_server
+    # 設定當容器異常停止或重啟 Docker 時，自動重啟服務
+    restart: unless-stopped
+    # 將本機的 8000 port 對應到容器內的 8000 port
+    ports:
+      - "8000:8000"
+    # 設定環境變數 (例如時區設定為台灣)
+    environment:
+      - TZ=Asia/Taipei
